@@ -37,6 +37,8 @@ config.load_tracks "tracks"
 
 if level >= 1 then
 
+config.load_tracks "tracks-wip"
+
 # load some tracks and missions
 var track_count = 5 * level
 for i in [1..track_count] do
