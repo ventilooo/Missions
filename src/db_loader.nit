@@ -19,6 +19,8 @@ import api
 var opts = new AppOptions.from_args(args)
 var config = new AppConfig.from_options(opts)
 
+
+# Use level 0 to disable debug things
 var level = 1
 if args.length >= 1 then level = args[0].to_i
 
@@ -30,6 +32,12 @@ config.friend_requests.clear
 config.tracks.clear
 config.missions.clear
 config.missions_status.clear
+
+config.load_tracks "tracks"
+
+if level >= 1 then
+
+config.load_tracks "tracks-wip"
 
 # load some tracks and missions
 var track_count = 5 * level
@@ -60,7 +68,6 @@ for i in [1..track_count] do
 	end
 end
 
-config.load_tracks "tracks"
 
 # load some players
 var morriar = new Player("Morriar", "Morriar", avatar_url= "https://avatars.githubusercontent.com/u/583144?v=3")
@@ -111,6 +118,8 @@ for player in players do
 end
 
 config.players.save new Player("John", "Doe")
+
+end
 
 print "Loaded {config.tracks.find_all.length} tracks"
 print "Loaded {config.missions.find_all.length} missions"
